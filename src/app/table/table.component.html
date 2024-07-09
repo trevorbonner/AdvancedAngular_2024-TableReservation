@@ -1,0 +1,29 @@
+<p>Table List:</p>
+<table>
+    <thead>
+        <tr>
+            <th>Table Number</th>
+            <th> Max Seating</th>
+            <th>Is Reserved</th>
+            <th *ngIf="showComments">Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+        <div *ngFor="let table of tables">
+            <tr>
+                <td>{{table.tableNumber}}</td>
+                <td>{{table.maxSeating}}</td>
+                <td>{{table.isReserved}}</td>
+                <td *ngIf="showComments && table.isReserved">Is Reserved</td>
+            </tr>
+        </div>
+    </tbody>
+
+    <div *ngIf="canShowComments(); else elseTemplate">
+        <h3>We have some comments to show</h3>
+    </div>
+    <ng-template #elseTemplate>
+        <p><b>We do not have some comments to show</b></p>
+    </ng-template>
+
+</table>
