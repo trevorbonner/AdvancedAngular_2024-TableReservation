@@ -1,24 +1,34 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Table } from '../models/table.model';
+import { filter, Observable } from 'rxjs';
+import { GetTableByIdResponse, GetTablesResponse, Table } from '../models/table.model';
 
 @Injectable({
   providedIn: 'root'
 })
 
 
-
 export class TableService {
 
-  tables: Array<Table> = [
-    {id: 1, tableNumber: 1, maxSeating: 4, isReserved:true},
-    {id: 2, tableNumber: 2, maxSeating: 4, isReserved:false},
-    {id: 3, tableNumber: 3, maxSeating: 4, isReserved:true}
-  ]
+  tables: Array<Table> = []
 
-  constructor() { }
+  constructor(private htppClient : HttpClient) { }
 
-  getTables()
+  baseUrl = 'https://localhost:7039/';
+
+  getTableById(id: number) : Observable<Table>
   {
-    return this.tables;
+    return this.htppClient.get<Table>(this.baseUrl + 'table/v1/' + id);
   }
+
+  getTables() : Observable<Table[]>
+  {
+    return this.htppClient.get<Table[]>(this.baseUrl + 'table/v1');
+  }
+
+  getActiveTables() : Observable<Table[]>
+  {
+    return this.getTables().pipe();
+  }
+
 }

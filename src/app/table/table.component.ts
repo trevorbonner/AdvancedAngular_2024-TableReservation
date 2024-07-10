@@ -1,4 +1,5 @@
 import { Component, OnInit, TemplateRef} from '@angular/core';
+import { Table } from '../core/models/table.model';
 import { TableService } from '../core/services/table.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { TableService } from '../core/services/table.service';
 })
 export class TableComponent implements OnInit {
 
-  tables: any;
+  tables: Array<Table> = []
   showComments = true;
 
   constructor(private service: TableService){
@@ -21,7 +22,13 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tables = this.service.getTables();
+    //this.tables = this.service.getTables();
+    // this.service.getTableById(1).subscribe(
+    //   value => alert(value.id + '   ' + value.maxSeating)
+    // );
+    this.service.getTables().subscribe(
+      value => this.tables = value
+    )
   }
 
 }
