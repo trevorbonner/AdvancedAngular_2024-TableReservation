@@ -1,0 +1,54 @@
+<form [formGroup]="reservationForm" (ngSubmit)="onSubmit()">
+    <label for="first-name">First Name:</label>
+    <input id="first-name" type="text" formControlName="firstName" placeholder="First Name">
+    <div *ngIf="reservationForm.controls['firstName'].invalid" class="invalidMessage">
+        <div *ngIf="reservationForm.controls['firstName'].hasError('required')">
+            Please enter a first Name
+        </div>
+        <div *ngIf="reservationForm.controls['firstName'].hasError('pattern')">
+           Must be only alphabetical
+        </div>
+    </div>
+    <br><br>
+    <label for="last-name">Last Name:</label>
+    <input id="last-name" type="text" formControlName="lastName" placeholder="Last Name">
+    <div *ngIf="reservationForm.controls['lastName'].invalid" class="invalidMessage">
+        <div *ngIf="reservationForm.controls['lastName'].hasError('required')">
+            Please enter a last Name
+        </div>
+        <div *ngIf="reservationForm.controls['lastName'].hasError('pattern')">
+           Must be only alphabetical
+        </div>
+    </div>
+    <br><br>
+    <label for="email">Email:</label>
+    <input id="email" type="email" formControlName="email" placeholder="something@something.com">
+    <div *ngIf="reservationForm.controls['lastName'].invalid" class="invalidMessage">
+        <div *ngIf="reservationForm.controls['email'].hasError('required')">
+            Please enter a valid email address
+        </div>
+        <div *ngIf="reservationForm.controls['email'].hasError('email')">
+           Email is in an incorrect format
+        </div>
+    </div>
+    <br><br>
+    <label for="phone">Phone number:</label>
+    <input id="phone" type="text" formControlName="phone" placeholder="(123)456-7890">
+    <div *ngIf="reservationForm.controls['phone'].invalid" class="invalidMessage">
+        Phone number must be between 10 and 13 characters long
+     </div>
+    <br><br>
+    <label for="placeSettings">Place Settings:</label>
+    <input id="placeSettings" type="number" formControlName="placeSettings">
+    <div *ngIf="reservationForm.controls['placeSettings'].invalid" class="invalidMessage">
+        Must select number of expected place settings
+     </div>
+    <br><br>
+    <label for="desired-date-time">Desired Date and Time:</label>
+    <input id="desired-date-time" type="datetime-local" formControlName="desiredDateTime">
+    <div *ngIf="reservationForm.controls['desiredDateTime'].invalid" class="invalidMessage">
+        Date cannot be in the past
+     </div>
+    <br><br>
+    <button type="submit" [disabled]="!reservationForm.valid">Submit</button>
+</form>

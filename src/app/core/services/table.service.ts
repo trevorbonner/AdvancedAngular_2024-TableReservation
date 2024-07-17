@@ -26,9 +26,9 @@ export class TableService {
     return this.htppClient.get<Table[]>(this.baseUrl + 'table/v1');
   }
 
-  getActiveTables() : Observable<Table[]>
-  {
-    return this.getTables().pipe();
-  }
+  // getActiveTables() : Observable<Table[]>
+  // {
+  //   return this.getTables().pipe();
+  // }
 
 }

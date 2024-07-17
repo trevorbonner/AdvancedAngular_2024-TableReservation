@@ -8,6 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { TableListItemComponent } from './table/table-list-item/table-list-item.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { TestComponent } from './test/test.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ReservationComponent } from './reservation/reservation.component';
+import { ReservationCompleteComponent } from './reservation/reservation-complete/reservation-complete.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -16,12 +20,16 @@ import { TestComponent } from './test/test.component';
     HomeComponent,
     TableListItemComponent,
     PageNotFoundComponent,
-    TestComponent    
+    TestComponent,
+    ReservationComponent,
+    ReservationCompleteComponent    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    DatePipe
   ],
   providers: [],
   bootstrap: [AppComponent]
