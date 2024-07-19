@@ -5,6 +5,6 @@ export function dateIsInPastValidator() : ValidatorFn {
         const currentDate = new Date();
         const pickedDate = new Date(control.value)
 
-        return currentDate < pickedDate? {'date must be larger then current date' : ''} : null;
+        return currentDate > pickedDate? { 'invalidDate': true } : null;
     };
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ReservationService } from 'src/app/core/services/reservation.service';
 
 @Component({
   selector: 'app-reservation-complete',
@@ -7,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./reservation-complete.component.scss']
 })
 export class ReservationCompleteComponent implements OnInit{
-  constructor(private route: ActivatedRoute){}
+  constructor(private route: ActivatedRoute, private reservationService: ReservationService){}
   confirmationId = 0;
   emailAddress = '';
   reservationDate = '';
@@ -17,9 +18,10 @@ export class ReservationCompleteComponent implements OnInit{
     this.confirmationId = parseInt(id);
     if(this.confirmationId > 0)
     {
-      //call service with the id to get the correct data
-      this.emailAddress = 'test@test.ca';
-      this.reservationDate = new Date().toString();
+      this.reservationService.getReservationById(this.confirmationId).subscribe(value => {
+        this.emailAddress = value.email;
+        this.reservationDate = value.desiredDateTime
+      })
     }
   }
 }
